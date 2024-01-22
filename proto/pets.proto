@@ -1,0 +1,37 @@
+// pets.proto
+syntax = "proto3";
+
+package petPackage;
+
+message Pet {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+message Empty {} // tuong duong nhu ham void hoac ham ko tham so
+
+message PetList {
+    repeated Pet pets = 1;
+}
+
+message PetRequestId {
+    string id =1;
+}
+
+message HealthCheckResponse {
+    bool status = 1;
+    string message = 2;
+}
+
+service PetService {
+    rpc List (Empty) returns (PetList) {};
+    rpc Insert (Pet) returns (Pet) {};
+    rpc Insert2 (Pet) returns (Pet) {};
+    rpc Delete(PetRequestId) returns (PetList){};
+    rpc Update(Pet) returns (Pet){}
+    rpc HealthCheck (Empty) returns (HealthCheckResponse);
+}
+
+// hoi cach truyen vao chuoi so
+// hoi cach truyen 2 tham so
